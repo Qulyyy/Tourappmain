@@ -1,0 +1,189 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#FFFFFF">
+
+    <!-- Фоновое изображение -->
+    <ImageView
+        android:id="@+id/backgroundImage"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:scaleType="centerCrop"
+        android:src="@drawable/img"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent" />
+
+    <!-- Контейнер с закругленными углами -->
+    <androidx.cardview.widget.CardView
+        android:id="@+id/cardContainer"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        app:cardCornerRadius="40dp"
+        app:cardElevation="8dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="16dp">
+
+            <!-- Заголовок тура (Niladri Reservoir) -->
+            <TextView
+                android:id="@+id/tour_title"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Niladri Reservoir"
+                android:textColor="#1B1E28"
+                android:textSize="24sp"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                android:layout_marginTop="8dp" />
+
+            <!-- Местоположение (Tekergat, Sunamgnj) -->
+            <TextView
+                android:id="@+id/tour_location"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Tekergat, Sunamgnj"
+                android:textSize="16sp"
+                android:textColor="#7D848D"
+                app:layout_constraintTop_toBottomOf="@id/tour_title"
+                app:layout_constraintStart_toStartOf="parent"
+                android:layout_marginTop="16dp" />
+
+            <!-- Строка с иконкой местоположения, рейтингом и ценой -->
+            <LinearLayout
+                android:id="@+id/linear_layout"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                app:layout_constraintTop_toBottomOf="@id/tour_location"
+                app:layout_constraintStart_toStartOf="parent"
+                android:layout_marginTop="24dp">
+
+                <!-- Иконка местоположения -->
+                <ImageView
+                    android:layout_width="16dp"
+                    android:layout_height="16dp"
+                    android:src="@drawable/location"
+                    android:contentDescription="Location"
+                    android:layout_marginTop="2dp"
+                    android:layout_marginEnd="4dp" />
+
+                <!-- Текст местоположения (Tekergat) -->
+                <TextView
+                    android:id="@+id/tour_location_icon_text"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Tekergat"
+                    android:textSize="14sp"
+                    android:textColor="#7D848D"
+                    android:layout_marginEnd="16dp" />
+
+                <!-- Рейтинг (звезда и оценка) -->
+                <ImageView
+                    android:layout_width="16dp"
+                    android:layout_height="16dp"
+                    android:src="@drawable/star"
+                    android:layout_marginTop="2dp"
+                    android:contentDescription="Rating"
+                    app:tint="#FFD700" />
+
+                <TextView
+                    android:id="@+id/tour_date"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="4.7 (2498)"
+                    android:textSize="14sp"
+                    android:textColor="#7D848D"
+                    android:layout_marginStart="4dp"
+                    android:layout_marginEnd="16dp" />
+
+                <!-- Цена -->
+                <TextView
+                    android:id="@+id/tour_price"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="$59/Person"
+                    android:textSize="16sp"
+                    android:textColor="#0D6EFD" />
+
+            </LinearLayout>
+
+            <!-- Заголовок "About Destination" -->
+            <TextView
+                android:id="@+id/about_destination_title"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="About Destination"
+                android:textSize="18sp"
+                android:textColor="#1B1E28"
+                app:layout_constraintTop_toBottomOf="@id/linear_layout"
+                app:layout_constraintStart_toStartOf="parent"
+                android:layout_marginTop="8dp" />
+
+            <!-- Описание назначения -->
+            <TextView
+                android:id="@+id/tour_description"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="You will get a complete travel package on the beaches. Packages in the form of airline tickets, recommended hotel rooms, transportation. Have you ever been on holiday to the Greek ETC... Read More"
+                android:textSize="14sp"
+                android:textColor="#7D848D"
+                app:layout_constraintTop_toBottomOf="@id/about_destination_title"
+                app:layout_constraintStart_toStartOf="parent"
+                android:layout_marginTop="16dp"
+                android:layout_marginEnd="16dp" />
+
+            <!-- Погода -->
+            <TextView
+                android:id="@+id/weather_info"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Weather: Loading..."
+                android:textSize="16sp"
+                android:textColor="#1B1E28"
+                app:layout_constraintTop_toBottomOf="@id/tour_description"
+                app:layout_constraintStart_toStartOf="parent"
+                android:layout_marginTop="16dp" />
+
+            <!-- ProgressBar для загрузки погоды -->
+            <ProgressBar
+                android:id="@+id/weather_progress"
+                android:layout_width="16dp"
+                android:layout_height="16dp"
+                android:indeterminateTint="#00FF00"
+                app:layout_constraintBottom_toBottomOf="@id/weather_info"
+                app:layout_constraintStart_toEndOf="@+id/weather_info"
+                app:layout_constraintTop_toTopOf="@id/weather_info" />
+
+            <!-- Кнопка "Обновить" -->
+            <Button
+                android:id="@+id/refresh_button"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Refresh"
+                app:layout_constraintTop_toBottomOf="@id/weather_info"
+                app:layout_constraintStart_toStartOf="parent"
+                android:layout_marginTop="16dp" />
+
+            <Button
+                android:id="@+id/buy_button"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="buy_tour"
+                app:layout_constraintTop_toBottomOf="@id/weather_info"
+                app:layout_constraintStart_toEndOf="@id/refresh_button"
+                android:layout_marginTop="16dp"
+                android:layout_marginStart="16dp"/>
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </androidx.cardview.widget.CardView>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

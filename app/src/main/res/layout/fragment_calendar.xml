@@ -1,0 +1,191 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@android:color/white">
+
+    <!-- Заголовок "Schedule" -->
+    <TextView
+        android:id="@+id/title_schedule"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="36dp"
+        android:text="Schedule"
+        android:textColor="@android:color/black"
+        android:textSize="20sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <!-- Кнопка назад -->
+    <ImageButton
+        android:id="@+id/back_button"
+        android:layout_width="12dp"
+        android:layout_height="12dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginStart="30dp"
+        android:src="@drawable/ic_back_arrow"
+        android:background="#FFFFFF"
+        android:scaleType="fitCenter"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@id/title_schedule"
+        app:layout_constraintBottom_toBottomOf="@id/title_schedule" />
+
+    <!-- Кнопка уведомлений -->
+    <ImageButton
+        android:id="@+id/notification_button"
+        android:layout_width="24dp"
+        android:layout_height="24dp"
+        android:layout_marginEnd="40dp"
+        android:src="@drawable/ic_notification"
+        android:background="#FFFFFF"
+        android:scaleType="fitCenter"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="@id/title_schedule"
+        app:layout_constraintBottom_toBottomOf="@id/title_schedule"/>
+
+    <!-- Красная точка для уведомлений -->
+    <View
+        android:id="@+id/notification_dot"
+        android:layout_width="8dp"
+        android:layout_height="8dp"
+        android:background="@drawable/rounded_circle_red"
+        app:layout_constraintEnd_toEndOf="@id/notification_button"
+        app:layout_constraintTop_toTopOf="@id/notification_button" />
+
+    <androidx.cardview.widget.CardView
+        android:layout_width="match_parent"
+        android:id="@+id/calendar_container"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="24dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginEnd="16dp"
+        app:cardBackgroundColor="@android:color/white"
+        app:cardCornerRadius="20dp"
+        app:cardElevation="8dp"
+        app:layout_constraintTop_toBottomOf="@id/title_schedule">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:padding="16dp">
+
+            <!-- Date Title and Arrows -->
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center_vertical"
+                android:orientation="horizontal"
+                android:weightSum="3">
+
+                <TextView
+                    android:id="@+id/currentDate"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="2"
+                    android:layout_marginStart="4dp"
+                    android:text="22 October"
+                    android:textColor="#000000"
+                    android:textSize="18sp"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"/>
+
+                <ImageButton
+                    android:id="@+id/btnPrev"
+                    android:layout_width="16dp"
+                    android:layout_height="16dp"
+                    android:layout_marginTop="4dp"
+                    android:src="@drawable/ic_back_arrow"
+                    android:scaleType="fitCenter"
+                    android:layout_gravity="end"
+                    android:layout_marginEnd="16dp"
+                    android:layout_marginStart="30dp"
+                    android:background="#FFFFFF"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintEnd_toStartOf="@id/btnNext" />
+
+                <ImageButton
+                    android:id="@+id/btnNext"
+                    android:layout_width="16dp"
+                    android:layout_height="16dp"
+                    android:layout_marginEnd="8dp"
+                    android:layout_marginTop="4dp"
+                    android:src="@drawable/ic_arrow_right"
+                    android:layout_gravity="end"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    android:scaleType="fitCenter"
+                    android:layout_marginStart="30dp"
+                    android:background="#FFFFFF" />
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+            <!-- Days RecyclerView -->
+            <FrameLayout
+                android:id="@+id/calendarContainer"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <!-- Синий фон -->
+                <View
+                    android:id="@+id/highlightView"
+                    android:layout_width="36dp"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginStart="5dp"
+                    android:layout_height="72dp"
+                    android:background="@drawable/bg_selected_day"
+                    android:visibility="visible" />
+
+                <!-- RecyclerView дней -->
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/calendarRecyclerView"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:nestedScrollingEnabled="false"
+                    android:layout_gravity="center"/>
+            </FrameLayout>
+        </LinearLayout>
+    </androidx.cardview.widget.CardView>
+
+    <!-- Заголовок "My Schedule" -->
+    <TextView
+        android:id="@+id/my_schedule_title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="32dp"
+        android:layout_marginTop="32dp"
+        android:layout_marginEnd="24dp"
+        android:text="My Schedule"
+        android:textColor="@android:color/black"
+        android:textSize="18sp"
+        android:textStyle="bold"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/calendar_container" />
+
+    <!-- Кнопка "View all" -->
+    <TextView
+        android:id="@+id/view_all_button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="28dp"
+        android:text="View all"
+        android:textColor="#3F51B5"
+        android:textSize="14sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="@id/my_schedule_title"
+        app:layout_constraintBottom_toBottomOf="@id/my_schedule_title" />
+
+    <!-- Список событий (RecyclerView) -->
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/schedule_recycler_view"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_marginTop="8dp"
+        android:paddingBottom="6dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/my_schedule_title"
+        tools:listitem="@layout/item_schedule" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

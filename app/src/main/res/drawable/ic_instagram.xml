@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="utf-8"?>
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="44dp"
+    android:height="44dp"
+    android:viewportWidth="44"
+    android:viewportHeight="44">
+    <!-- Основной круг с градиентом -->
+    <path
+        android:fillColor="#00000000"
+        android:pathData="M22,22m-22,0a22,22 0,1 1,44 0a22,22 0,1 1,-44 0"
+        android:fillAlpha="0"
+        android:strokeColor="#000000"
+        android:strokeAlpha="0"
+        android:strokeWidth="1"/>
+    <linearGradient
+        android:startX="0.396870"
+        android:startY="0.400139"
+        android:endX="40.368023"
+        android:endY="40.371307"
+        android:gradientRadius="0"
+        android:type="linear">
+        <item android:offset="0.0" android:color="#FFD521"/>
+        <item android:offset="0.05" android:color="#FFD521"/>
+        <item android:offset="0.501119" android:color="#F50000"/>
+        <item android:offset="0.95" android:color="#B900B4"/>
+        <item android:offset="0.950079" android:color="#B900B4"/>
+        <item android:offset="1.0" android:color="#B900B4"/>
+    </linearGradient>
+    <path
+        android:fillColor="@android:color/transparent"
+        android:fillAlpha="0.7"
+        android:pathData="M22,22m-22,0a22,22 0,1 1,44 0a22,22 0,1 1,-44 0"
+        android:strokeColor="#000000"
+        android:strokeAlpha="0"
+        android:strokeWidth="1"/>
+
+    <!-- Маленький белый круг в центре (точка в камере) -->
+    <path
+        android:fillColor="#FFFFFF"
+        android:pathData="M28.53 16.66C28.53 15.99 27.99 15.46 27.33 15.46C26.67 15.46 26.13 15.99 26.13 16.66C26.13 17.32 26.67 17.86 27.33 17.86C27.99 17.86 28.53 17.32 28.53 16.66Z"/>
+
+    <!-- Основной путь камеры -->
+    <path
+        android:fillColor="#FFFFFF"
+        android:pathData="M30.13 26.04C30.09 27.01 29.93 27.54 29.79 27.89C29.61 28.36 29.39 28.69 29.04 29.04C28.69 29.39 28.36 29.61 27.89 29.79C27.54 29.93 27.01 30.09 26.03 30.14C24.98 30.18 24.67 30.19 21.99 30.19C19.32 30.19 19.01 30.18 17.95 30.14C16.98 30.09 16.45 29.93 16.1 29.79C15.63 29.61 15.3 29.39 14.95 29.04C14.6 28.69 14.38 28.36 14.2 27.89C14.06 27.54 13.9 27.01 13.86 26.04C13.8 24.98 13.8 24.66 13.8 22C13.8 19.32 13.8 19.01 13.86 17.95C13.9 16.98 14.06 16.45 14.2 16.1C14.38 15.63 14.6 15.3 14.95 14.95C15.3 14.6 15.63 14.38 16.1 14.2C16.45 14.06 16.98 13.9 17.95 13.85C19.01 13.81 19.32 13.8 21.99 13.8C24.67 13.8 24.98 13.81 26.03 13.85C27.01 13.9 27.54 14.06 27.89 14.2C28.36 14.38 28.69 14.6 29.04 14.95C29.39 15.3 29.61 15.63 29.79 16.1C29.93 16.45 30.09 16.98 30.13 17.95C30.18 19.01 30.19 19.32 30.19 22C30.19 24.66 30.18 24.98 30.13 26.04Z"/>
+
+    <!-- Внутренний круг камеры -->
+    <path
+        android:fillColor="#FFFFFF"
+        android:pathData="M21.99 25.33C20.15 25.33 18.66 23.84 18.66 22C18.66 20.15 20.15 18.66 21.99 18.66C23.83 18.66 25.33 20.15 25.33 22C25.33 23.84 23.83 25.33 21.99 25.33Z"/>
+
+    <!-- Внутренний круг камеры (меньший) -->
+    <path
+        android:fillColor="#FFFFFF"
+        android:pathData="M21.99 16.86C19.16 16.86 16.86 19.16 16.86 22C16.86 24.83 19.16 27.13 21.99 27.13C24.83 27.13 27.13 24.83 27.13 22C27.13 19.16 24.83 16.86 21.99 16.86Z"/>
+</vector>

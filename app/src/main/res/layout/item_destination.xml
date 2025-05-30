@@ -1,0 +1,143 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="268dp"
+    android:layout_height="390dp"
+    android:layout_marginEnd="8dp"
+    app:cardCornerRadius="16dp"
+    app:cardElevation="4dp">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <!-- Изображение -->
+        <ImageView
+            android:id="@+id/destination_image"
+            android:layout_width="240dp"
+            android:layout_height="286dp"
+            android:layout_marginTop="12dp"
+            android:scaleType="fitXY"
+            android:src="@drawable/niladri_reservoir"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent" />
+
+        <!-- Кнопка "Share" -->
+        <ImageButton
+            android:id="@+id/share_button"
+            android:layout_width="32dp"
+            android:layout_height="32dp"
+            android:layout_marginTop="12dp"
+            android:layout_marginEnd="12dp"
+            android:src="@drawable/ic_share"
+            android:scaleType="fitCenter"
+            android:background="@android:color/transparent"
+            android:contentDescription="Share"
+            app:layout_constraintTop_toTopOf="@id/destination_image"
+            app:layout_constraintEnd_toEndOf="@id/destination_image" />
+
+
+        <!-- Название -->
+        <TextView
+            android:id="@+id/destination_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="20dp"
+            android:text="Niladri Reservoir"
+            android:textColor="@android:color/black"
+            android:textSize="16sp"
+            android:textStyle="bold"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/destination_image" />
+
+        <!-- Иконка местоположения перед текстом местоположения -->
+        <ImageView
+            android:id="@+id/location_icon"
+            android:layout_width="16dp"
+            android:layout_height="16dp"
+            android:layout_marginTop="12dp"
+            android:src="@drawable/ic_location"
+            android:contentDescription="Location icon"
+            app:layout_constraintTop_toBottomOf="@id/destination_name"
+            app:layout_constraintStart_toStartOf="@id/destination_name" />
+
+        <!-- Местоположение -->
+        <TextView
+            android:id="@+id/destination_location"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="4dp"
+            android:layout_marginTop="12dp"
+            android:text="Tekergat, Sunamgnj"
+            android:textColor="@android:color/darker_gray"
+            android:textSize="14sp"
+            app:layout_constraintStart_toEndOf="@id/location_icon"
+            app:layout_constraintTop_toBottomOf="@id/destination_name" />
+
+        <!-- Иконка звезды перед рейтингом -->
+        <ImageView
+            android:id="@+id/rating_star"
+            android:layout_width="12dp"
+            android:layout_height="12dp"
+            android:layout_marginStart="16dp"
+            android:layout_marginEnd="8dp"
+            android:layout_marginTop="26dp"
+            android:src="@drawable/star"
+            android:visibility="gone"
+            android:contentDescription="Rating star"
+            app:layout_constraintEnd_toStartOf="@id/destination_rating"
+            app:layout_constraintTop_toBottomOf="@id/destination_image" />
+
+        <!-- Рейтинг -->
+        <TextView
+            android:id="@+id/destination_rating"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="22dp"
+            android:layout_marginBottom="8dp"
+            android:layout_marginEnd="16dp"
+            android:text="4.7"
+            android:textColor="@android:color/black"
+            android:textSize="14sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/destination_image" />
+
+        <LinearLayout
+            android:id="@+id/reviews_container"
+            android:layout_width="60dp"
+            android:layout_height="20dp"
+            android:layout_marginTop="8dp"
+            android:orientation="horizontal"
+            android:gravity="center_vertical"
+            android:visibility="gone"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/destination_rating">
+
+            <!-- Аватар 3 (с наложением) -->
+            <ImageView
+                android:id="@+id/review_avatar_3"
+                android:layout_width="20dp"
+                android:layout_height="20dp"
+                android:layout_marginStart="16dp"
+                android:src="@drawable/avatar_placeholder"
+
+                android:contentDescription="Review avatar 3" />
+
+            <!-- Количество отзывов -->
+            <TextView
+                android:id="@+id/reviews_count"
+                android:layout_width="20dp"
+                android:layout_height="20dp"
+                android:layout_marginStart="-8dp"
+                android:background="@drawable/circle_reviews_background"
+                android:gravity="center"
+                android:text="+50"
+                android:textColor="@android:color/darker_gray"
+                android:textSize="10sp" />
+        </LinearLayout>
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</androidx.cardview.widget.CardView>

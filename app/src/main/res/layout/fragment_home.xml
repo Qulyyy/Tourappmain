@@ -1,0 +1,138 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.core.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:fillViewport="true">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@android:color/white"
+        android:paddingTop="16dp">
+
+        <!-- Верхняя панель -->
+        <ImageButton
+            android:id="@+id/avatar"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:layout_marginTop="24dp"
+            android:layout_marginStart="24dp"
+            android:src="@drawable/avatar_placeholder"
+            android:scaleType="centerInside"
+            android:background="#ffffff"
+            android:contentDescription="User avatar"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/user_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:text="Leonardo"
+            android:textColor="@android:color/black"
+            android:textSize="16sp"
+            app:layout_constraintStart_toEndOf="@id/avatar"
+            app:layout_constraintTop_toTopOf="@id/avatar"
+            app:layout_constraintBottom_toBottomOf="@id/avatar" />
+
+        <ImageButton
+            android:id="@+id/notification_button"
+            android:layout_width="24dp"
+            android:layout_height="24dp"
+            android:layout_marginEnd="40dp"
+            android:visibility="gone"
+            android:src="@drawable/ic_notification"
+            android:background="#FFFFFF"
+            android:scaleType="fitCenter"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="@id/avatar"
+            app:layout_constraintBottom_toBottomOf="@id/avatar"/>
+
+        <!-- Красная точка для уведомлений -->
+        <View
+            android:id="@+id/notification_dot"
+            android:visibility="gone"
+            android:layout_width="6dp"
+            android:layout_height="6dp"
+            android:background="@drawable/rounded_circle_red"
+            app:layout_constraintEnd_toEndOf="@id/notification_button"
+            app:layout_constraintTop_toTopOf="@id/notification_button" />
+
+        <!-- Заголовок "Explore the Beautiful world!" -->
+        <TextView
+            android:id="@+id/title_explore"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="24dp"
+            android:layout_marginTop="32dp"
+            android:text="Explore the"
+            android:textColor="@android:color/black"
+            android:textSize="40sp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/avatar" />
+
+        <TextView
+            android:id="@+id/title_explore1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="24dp"
+            android:layout_marginTop="8dp"
+            android:text="Beautiful world!"
+            android:textColor="@android:color/black"
+            android:textSize="40sp"
+            android:textStyle="bold"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/title_explore" />
+
+        <View
+            android:id="@+id/or_line"
+            android:layout_width="100dp"
+            android:layout_height="10dp"
+            android:layout_marginStart="174dp"
+            android:background="@drawable/or_line"
+            app:layout_constraintStart_toStartOf="@id/title_explore1"
+            app:layout_constraintTop_toBottomOf="@id/title_explore1" />
+
+        <!-- Подзаголовок "Best Destination" -->
+        <TextView
+            android:id="@+id/subtitle_best_destination"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="32dp"
+            android:layout_marginTop="32dp"
+            android:text="Best Destination"
+            android:textColor="@android:color/black"
+            android:textSize="24sp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/title_explore1" />
+
+        <!-- Кнопка "View all" -->
+        <TextView
+            android:id="@+id/view_all_button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="24dp"
+            android:text="View all"
+            android:textColor="#3F51B5"
+            android:textSize="14sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="@id/subtitle_best_destination"
+            app:layout_constraintBottom_toBottomOf="@id/subtitle_best_destination" />
+
+        <!-- RecyclerView для списка мест -->
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/destinations_recycler_view"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="32dp"
+            android:paddingHorizontal="16dp"
+            android:nestedScrollingEnabled="false"
+        app:layout_constraintTop_toBottomOf="@id/subtitle_best_destination"
+        app:layout_constraintBottom_toBottomOf="parent"
+        tools:listitem="@layout/item_destination" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</androidx.core.widget.NestedScrollView>

@@ -1,0 +1,133 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:padding="@dimen/padding_medium"
+    android:background="@drawable/rounded_background"
+    android:gravity="center">
+
+    <!-- Стрелка назад (иконка) -->
+    <ImageView
+        android:id="@+id/backArrow"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/ic_back_arrow"
+        android:layout_marginTop="@dimen/padding_small"
+        android:layout_gravity="start" />
+
+    <!-- Заголовок "Sign in now" -->
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Sign in now"
+        android:textSize="@dimen/text_size_large"
+        android:textColor="@color/black"
+        android:layout_marginTop="@dimen/padding_medium" />
+
+    <!-- Подзаголовок "Please sign in to continue our app" -->
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Please sign in to continue our app"
+        android:textSize="@dimen/text_size_medium"
+        android:textColor="@color/gray"
+        android:layout_marginTop="@dimen/padding_small" />
+
+    <!-- Поле для email -->
+    <EditText
+        android:id="@+id/email_input"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="www.uihut@gmail.com"
+        android:inputType="textEmailAddress"
+        android:textColor="@color/black"
+        android:textSize="@dimen/text_size_medium"
+        android:background="@drawable/rounded_edittext"
+        android:padding="@dimen/padding_small"
+        android:layout_marginTop="@dimen/padding_medium" />
+
+    <!-- Поле для пароля -->
+    <EditText
+        android:id="@+id/password_input"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Password"
+        android:textColor="@color/black"
+        android:inputType="textPassword"
+        android:textSize="@dimen/text_size_medium"
+        android:background="@drawable/rounded_edittext"
+        android:padding="@dimen/padding_small"
+        android:layout_marginTop="@dimen/padding_small"
+        android:drawableEnd="@android:drawable/ic_menu_view" />
+
+    <!-- Ссылка "Forget Password?" -->
+    <TextView
+        android:id="@+id/forgot_password"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Forget Password?"
+        android:textColor="@color/blue_500"
+        android:textSize="@dimen/text_size_medium"
+        android:layout_marginTop="@dimen/padding_small"
+        android:layout_gravity="end" />
+
+    <!-- ProgressBar -->
+    <ProgressBar
+        android:id="@+id/loginProgress"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:visibility="gone"
+        android:layout_gravity="center"
+        android:layout_marginTop="@dimen/padding_small" />
+
+    <!-- Кнопка "Sign In" -->
+    <Button
+        android:id="@+id/login_button"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/button_height"
+        android:text="Sign In"
+        android:backgroundTint="@color/blue_500"
+        android:textColor="@color/white"
+        android:textSize="@dimen/text_size_medium"
+        android:layout_marginTop="@dimen/padding_medium" />
+
+    <!-- Ссылка "Don’t have an account? Sign up" -->
+    <TextView
+        android:id="@+id/register_link"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Don’t have an account? Sign up"
+        android:textColor="@color/gray"
+        android:textSize="@dimen/text_size_medium"
+        android:layout_marginTop="@dimen/padding_small" />
+
+    <!-- Текст "Or connect" -->
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Or connect"
+        android:textColor="@color/gray"
+        android:textSize="@dimen/text_size_medium"
+        android:layout_marginTop="@dimen/padding_medium" />
+
+    <!-- Иконки социальных сетей (Facebook, Instagram, Twitter) -->
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_marginTop="@dimen/padding_small">
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/ic_facebook"
+            android:layout_marginEnd="@dimen/padding_small" />
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/ic_twitter" />
+    </LinearLayout>
+
+</LinearLayout>

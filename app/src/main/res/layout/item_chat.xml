@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginStart="16dp"
+    android:layout_marginTop="16dp"
+    android:paddingVertical="8dp"
+    android:paddingHorizontal="16dp">
+
+    <!-- Аватар -->
+    <ImageView
+        android:id="@+id/chat_avatar"
+        android:layout_width="48dp"
+        android:layout_height="48dp"
+        android:src="@drawable/avatar_placeholder"
+        android:contentDescription="Chat avatar"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <!-- Статус (зелёный/жёлтый круг) -->
+
+    <!-- Имя -->
+
+    <View
+        android:id="@+id/status_indicator"
+        android:layout_width="16dp"
+        android:layout_height="16dp"
+        android:layout_marginBottom="1dp"
+        android:background="@drawable/circle_status_green"
+        app:layout_constraintBottom_toBottomOf="@id/chat_avatar"
+        app:layout_constraintEnd_toEndOf="@id/chat_avatar"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toStartOf="@id/chat_avatar" />
+
+    <TextView
+        android:id="@+id/chat_name"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:text="Sajib Rahman"
+        android:textColor="@android:color/black"
+        android:textSize="16sp"
+        android:textStyle="bold"
+        app:layout_constraintStart_toEndOf="@id/chat_avatar"
+        app:layout_constraintTop_toTopOf="@id/chat_avatar" />
+
+    <!-- Время -->
+    <TextView
+        android:id="@+id/chat_time"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="16dp"
+        android:text="09:46"
+        android:textColor="@android:color/darker_gray"
+        android:textSize="14sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="@id/chat_name"
+        app:layout_constraintBottom_toBottomOf="@id/chat_name" />
+
+    <!-- Последнее сообщение -->
+    <TextView
+        android:id="@+id/last_message"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="4dp"
+        android:layout_marginEnd="16dp"
+        android:ellipsize="end"
+        android:maxLines="2"
+        android:text="Hi, John! How are you doing?"
+        android:textColor="@android:color/darker_gray"
+        android:textSize="14sp"
+        app:layout_constraintEnd_toStartOf="@id/message_status"
+        app:layout_constraintStart_toEndOf="@id/chat_avatar"
+        app:layout_constraintTop_toBottomOf="@id/chat_name" />
+
+    <!-- Индикатор прочитанных/непрочитанных сообщений -->
+    <ImageView
+        android:id="@+id/message_status"
+        android:layout_width="16dp"
+        android:layout_height="16dp"
+        android:layout_marginEnd="12dp"
+        android:src="@drawable/ic_message_read"
+        android:contentDescription="Message status"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="@id/last_message"
+        app:layout_constraintBottom_toBottomOf="@id/last_message" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

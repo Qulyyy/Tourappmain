@@ -1,0 +1,146 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:padding="@dimen/padding_medium"
+    android:background="@drawable/rounded_background"
+    android:gravity="center">
+
+    <!-- Стрелка назад (иконка) -->
+    <ImageView
+        android:id="@+id/back_arrow"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="start"
+        android:layout_marginTop="@dimen/padding_small"
+        android:src="@drawable/ic_back_arrow" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/padding_medium"
+        android:text="Sign up now"
+        android:textColor="@color/black"
+        android:textSize="@dimen/text_size_large" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/padding_small"
+        android:text="Please fill the details and create account"
+        android:textColor="@color/gray"
+        android:textSize="@dimen/text_size_medium" />
+
+    <EditText
+        android:id="@+id/loginInput"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/padding_medium"
+        android:background="@drawable/rounded_edittext"
+        android:hint="Leonardo Smith"
+        android:inputType="textPersonName"
+        android:padding="@dimen/padding_small"
+        android:textSize="@dimen/text_size_medium" />
+
+    <!-- Заголовок "Sign up now" -->
+
+    <!-- Подзаголовок "Please fill the details and create account" -->
+
+    <!-- Поле для имени -->
+
+    <!-- Поле для email -->
+    <EditText
+        android:id="@+id/email_input"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/padding_small"
+        android:background="@drawable/rounded_edittext"
+        android:hint="www.uihut@gmail.com"
+        android:inputType="textEmailAddress"
+        android:padding="@dimen/padding_small"
+        android:textSize="@dimen/text_size_medium" />
+
+    <!-- Поле для пароля -->
+    <!-- Иконка для показа/скрытия пароля -->
+
+    <!-- Текст "Password must be 8 character" -->
+    <EditText
+        android:id="@+id/password_input"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/padding_small"
+        android:background="@drawable/rounded_edittext"
+        android:drawableEnd="@android:drawable/ic_menu_view"
+        android:hint="Password"
+        android:inputType="textPassword"
+        android:padding="@dimen/padding_small"
+        android:textSize="@dimen/text_size_medium" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Password must be 8 character"
+        android:textColor="@color/light_gray"
+        android:textSize="@dimen/text_size_small"
+        android:layout_marginTop="@dimen/padding_small"
+        android:layout_gravity="start" />
+
+    <!-- Кнопка "Sign Up" -->
+
+    <!-- Текст "Or connect" -->
+    <Button
+        android:id="@+id/register_button"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/button_height"
+        android:layout_marginTop="@dimen/padding_medium"
+        android:backgroundTint="@color/blue_500"
+        android:text="Sign Up"
+        android:textColor="@color/white"
+        android:textSize="@dimen/text_size_medium" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Or connect"
+        android:textColor="@color/gray"
+        android:textSize="@dimen/text_size_medium"
+        android:layout_marginTop="@dimen/padding_medium" />
+
+    <!-- Иконки социальных сетей (Facebook, Instagram, Twitter) -->
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_marginTop="@dimen/padding_small">
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/ic_facebook"
+            android:layout_marginEnd="@dimen/padding_small" />
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/ic_instagram"
+            android:layout_marginEnd="@dimen/padding_small" />
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/ic_twitter" />
+    </LinearLayout>
+
+    <!-- Текст "Already have an account? Sign in" -->
+    <TextView
+        android:id="@+id/sign_in_link"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/padding_small"
+        android:text="Already have an account? Sign in"
+        android:textColor="@color/gray"
+        android:textSize="@dimen/text_size_medium" />
+
+    <!-- Индикатор внизу (Home Indicator) -->
+</LinearLayout>

@@ -1,0 +1,143 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="horizontal"
+    android:background="@android:color/white"
+    android:padding="8dp"
+    android:layout_gravity="bottom">
+
+    <!-- Элемент 1: Home -->
+    <LinearLayout
+        android:id="@+id/nav_home"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:gravity="center"
+        android:layout_marginTop="6dp"
+        android:orientation="vertical"
+        android:padding="8dp"
+        android:tag="nav_home">
+
+        <ImageView
+            android:id="@+id/nav_home_icon"
+            android:layout_width="24dp"
+            android:layout_height="24dp"
+            android:src="@drawable/ic_home"
+            android:contentDescription="Главная" />
+
+        <TextView
+            android:id="@+id/nav_home_text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Главная"
+            android:textColor="@drawable/bottom_nav_selector"
+            android:textSize="12sp" />
+    </LinearLayout>
+
+    <!-- Элемент 2: Calendar (увеличенная иконка) -->
+    <LinearLayout
+        android:id="@+id/nav_calendar"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:layout_marginTop="6dp"
+        android:gravity="center"
+        android:orientation="vertical"
+        android:padding="8dp"
+        android:tag="nav_calendar">
+
+        <ImageView
+            android:id="@+id/nav_calendar_icon"
+            android:layout_width="24dp"
+            android:layout_height="24dp"
+            android:src="@drawable/ic_calendar"
+            android:contentDescription="Календарь" />
+
+        <TextView
+            android:id="@+id/nav_calendar_text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Календарь"
+            android:textColor="@drawable/bottom_nav_selector"
+            android:textSize="12sp" />
+    </LinearLayout>
+
+    <!-- Элемент 3: Search -->
+    <LinearLayout
+        android:id="@+id/nav_search"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:gravity="center"
+        android:orientation="vertical"
+        android:padding="8dp"
+        android:tag="nav_search">
+
+        <ImageView
+            android:id="@+id/nav_search_icon"
+            android:layout_width="52dp"
+            android:layout_height="52dp"
+            android:src="@drawable/search"
+            android:contentDescription="Search"
+            android:background="@drawable/circle_background"
+            android:padding="18dp" />
+    </LinearLayout>
+
+    <!-- Элемент 4: Messages -->
+    <LinearLayout
+        android:id="@+id/nav_messages"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:gravity="center"
+        android:orientation="vertical"
+        android:layout_marginTop="6dp"
+        android:padding="8dp"
+        android:tag="nav_messages">
+
+        <ImageView
+            android:id="@+id/nav_messages_icon"
+            android:layout_width="24dp"
+            android:layout_height="24dp"
+            android:src="@drawable/plane"
+            android:contentDescription="Туры" />
+
+        <TextView
+            android:id="@+id/nav_messages_text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Туры"
+            android:textColor="@drawable/bottom_nav_selector"
+            android:textSize="12sp" />
+    </LinearLayout>
+
+    <!-- Элемент 5: Profile -->
+    <LinearLayout
+        android:id="@+id/nav_profile"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:layout_marginTop="6dp"
+        android:gravity="center"
+        android:orientation="vertical"
+        android:padding="8dp"
+        android:tag="nav_profile">
+
+        <ImageView
+            android:id="@+id/nav_profile_icon"
+            android:layout_width="24dp"
+            android:layout_height="24dp"
+            android:src="@drawable/ic_profile"
+            android:contentDescription="Profile" />
+
+        <TextView
+            android:id="@+id/nav_profile_text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Профиль"
+            android:textColor="@drawable/bottom_nav_selector"
+            android:textSize="12sp" />
+    </LinearLayout>
+</LinearLayout>
