@@ -7,4 +7,12 @@
     <color name="light_gray">#F7F7F9</color>
     <color name="background_color">#212121</color>
     <color name="text_color">#FFFFFF</color>
+
+    <!-- Тёмная тема -->
+    <color name="background_dark">#212121</color>
+    <color name="text_primary_dark">#E0E0E0</color>
+    <color name="text_secondary_dark">#B0B0B0</color>
+    <color name="accent_dark">#536DFE</color>
+    <color name="card_background_dark">#2C2C2C</color>
+    <color name="placeholder_text_dark">#808080</color>
 </resources>

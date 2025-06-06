@@ -9,8 +9,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical"
-        android:layout_marginTop="20dp"
-        android:background="@android:color/white"
+        android:layout_marginTop="36dp"
         android:paddingTop="16dp">
 
         <!-- Верхняя панель -->
@@ -37,7 +36,6 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Профиль"
-                android:textColor="@android:color/black"
                 android:textSize="20sp"
                 android:textStyle="bold"
                 app:layout_constraintStart_toStartOf="parent"
@@ -82,7 +80,6 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="16dp"
                 android:text="Гость"
-                android:textColor="@android:color/black"
                 android:textSize="24sp"
                 android:textStyle="bold" />
 
@@ -128,7 +125,6 @@
                     android:layout_weight="1"
                     android:layout_marginStart="16dp"
                     android:text="Изменение данных"
-                    android:textColor="@android:color/black"
                     android:textSize="16sp" />
 
                 <ImageView
@@ -163,7 +159,6 @@
                     android:layout_weight="1"
                     android:layout_marginStart="16dp"
                     android:text="Настройки"
-                    android:textColor="@android:color/black"
                     android:textSize="16sp" />
 
                 <ImageView
@@ -197,7 +192,6 @@
                     android:layout_weight="1"
                     android:layout_marginStart="16dp"
                     android:text="Версия"
-                    android:textColor="@android:color/black"
                     android:textSize="16sp" />
 
                 <ImageView
