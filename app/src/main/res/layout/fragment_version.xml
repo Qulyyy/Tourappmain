@@ -8,7 +8,6 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
-        android:text="Version 1.0.0"
+        android:text="Alpha 0.0.2"
         android:textSize="20sp" />
-
 </FrameLayout>

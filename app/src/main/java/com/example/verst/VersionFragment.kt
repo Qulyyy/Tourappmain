@@ -22,7 +22,7 @@ class VersionFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        binding.versionText.text = "Version 1.0.0"
+        binding.versionText.text = "Alpha 0.0.2"
     }
 
     override fun onDestroyView() {

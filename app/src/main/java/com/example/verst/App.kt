@@ -16,10 +16,8 @@ class App : Application() {
     override fun onCreate() {
         super.onCreate()
         context = applicationContext
-        // Загружаем сохраненное состояние темы
         val sharedPrefs = getSharedPreferences("tour_app_prefs", MODE_PRIVATE)
         darkTheme = sharedPrefs.getBoolean("dark_theme", false)
-        // Применяем тему при запуске приложения
         AppCompatDelegate.setDefaultNightMode(
             if (darkTheme) AppCompatDelegate.MODE_NIGHT_YES else AppCompatDelegate.MODE_NIGHT_NO
         )
@@ -30,7 +28,6 @@ class App : Application() {
         AppCompatDelegate.setDefaultNightMode(
             if (darkThemeEnabled) AppCompatDelegate.MODE_NIGHT_YES else AppCompatDelegate.MODE_NIGHT_NO
         )
-        // Сохраняем состояние темы
         val sharedPrefs = getSharedPreferences("tour_app_prefs", MODE_PRIVATE)
         sharedPrefs.edit().putBoolean("dark_theme", darkThemeEnabled).apply()
     }

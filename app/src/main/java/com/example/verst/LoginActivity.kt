@@ -1,6 +1,7 @@
 package com.example.verst
 
 import android.content.Intent
+import android.net.Uri
 import android.os.Bundle
 import android.view.View
 import android.widget.Toast
@@ -19,6 +20,8 @@ class LoginActivity : AppCompatActivity() {
     companion object {
         private const val SHARED_PREFS_NAME = "tour_app_prefs"
         private const val TOKEN_KEY = "auth_token"
+        private const val FACEBOOK_URL = "https://www.facebook.com"
+        private const val TWITTER_URL = "https://www.twitter.com"
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -33,12 +36,6 @@ class LoginActivity : AppCompatActivity() {
             startActivity(Intent(this, MainActivity::class.java))
             finish()
             return
-        }
-
-        // Стрелка назад
-        binding.backArrow.setOnClickListener {
-            startActivity(Intent(this, MainActivity::class.java))
-            finish()
         }
 
         // Кнопка логина
@@ -56,19 +53,33 @@ class LoginActivity : AppCompatActivity() {
             startActivity(Intent(this, RegisterActivity::class.java))
         }
 
-        // Забыл пароль
-        binding.forgotPassword.setOnClickListener {
-            Toast.makeText(this, "Forgot Password clicked (not implemented)", Toast.LENGTH_SHORT).show()
+        // Обработчик клика для иконки Facebook
+        binding.facebookIcon.setOnClickListener {
+            openUrlInBrowser(FACEBOOK_URL)
+        }
+
+        // Обработчик клика для иконки Twitter
+        binding.twitterIcon.setOnClickListener {
+            openUrlInBrowser(TWITTER_URL)
+        }
+    }
+
+    private fun openUrlInBrowser(url: String) {
+        val intent = Intent(Intent.ACTION_VIEW, Uri.parse(url))
+        try {
+            startActivity(intent)
+        } catch (e: Exception) {
+            Toast.makeText(this, "Не удалось открыть браузер", Toast.LENGTH_SHORT).show()
         }
     }
 
     private fun validateLoginFields(login: String, password: String): Boolean {
         if (login.isEmpty()) {
-            binding.emailInput.error = "Login cannot be empty"
+            binding.emailInput.error = "Поле логина не может быть пустым"
             return false
         }
         if (password.isEmpty()) {
-            binding.passwordInput.error = "Password cannot be empty"
+            binding.passwordInput.error = "Поле пароля не может быть пустым"
             return false
         }
         return true
@@ -89,16 +100,16 @@ class LoginActivity : AppCompatActivity() {
                     if (token != null) {
                         val sharedPrefs = getSharedPreferences(SHARED_PREFS_NAME, MODE_PRIVATE)
                         sharedPrefs.edit().putString(TOKEN_KEY, token).apply()
-                        Toast.makeText(this@LoginActivity, "Login successful!", Toast.LENGTH_SHORT).show()
+                        Toast.makeText(this@LoginActivity, "Вход выполнен успешно!", Toast.LENGTH_SHORT).show()
                         startActivity(Intent(this@LoginActivity, MainActivity::class.java))
                         finish()
                     } else {
-                        Toast.makeText(this@LoginActivity, "Invalid response from server", Toast.LENGTH_LONG).show()
+                        Toast.makeText(this@LoginActivity, "Неверный ответ от сервера", Toast.LENGTH_LONG).show()
                     }
                 } else {
                     val errorMessage = when (response.code()) {
-                        401 -> "Invalid login or password"
-                        else -> "Login failed: ${response.message()}"
+                        401 -> "Неверный логин или пароль"
+                        else -> "Ошибка входа: ${response.message()}"
                     }
                     Toast.makeText(this@LoginActivity, errorMessage, Toast.LENGTH_LONG).show()
                 }
@@ -107,7 +118,7 @@ class LoginActivity : AppCompatActivity() {
             override fun onFailure(call: Call<LoginReceiveRemote>, t: Throwable) {
                 binding.loginProgress.visibility = View.GONE
                 binding.loginButton.isEnabled = true
-                Toast.makeText(this@LoginActivity, "Network error: ${t.message}", Toast.LENGTH_LONG).show()
+                Toast.makeText(this@LoginActivity, "Ошибка сети: ${t.message}", Toast.LENGTH_LONG).show()
             }
         })
     }

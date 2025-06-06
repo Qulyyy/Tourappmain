@@ -50,7 +50,7 @@
                 android:id="@+id/tour_location"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Tekergat, Sunamgnj"
+                android:text=""
                 android:textSize="16sp"
                 android:textColor="#7D848D"
                 app:layout_constraintTop_toBottomOf="@id/tour_title"
@@ -65,7 +65,7 @@
                 android:orientation="horizontal"
                 app:layout_constraintTop_toBottomOf="@id/tour_location"
                 app:layout_constraintStart_toStartOf="parent"
-                android:layout_marginTop="24dp">
+                android:layout_marginTop="1dp">
 
                 <!-- Иконка местоположения -->
                 <ImageView
@@ -90,7 +90,7 @@
                 <ImageView
                     android:layout_width="16dp"
                     android:layout_height="16dp"
-                    android:src="@drawable/star"
+                    android:src="@drawable/ic_calendar_small"
                     android:layout_marginTop="2dp"
                     android:contentDescription="Rating"
                     app:tint="#FFD700" />
@@ -121,12 +121,12 @@
                 android:id="@+id/about_destination_title"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="About Destination"
+                android:text="Описание"
                 android:textSize="18sp"
                 android:textColor="#1B1E28"
                 app:layout_constraintTop_toBottomOf="@id/linear_layout"
                 app:layout_constraintStart_toStartOf="parent"
-                android:layout_marginTop="8dp" />
+                android:layout_marginTop="20dp" />
 
             <!-- Описание назначения -->
             <TextView
@@ -168,18 +168,18 @@
                 android:id="@+id/refresh_button"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Refresh"
-                app:layout_constraintTop_toBottomOf="@id/weather_info"
-                app:layout_constraintStart_toStartOf="parent"
-                android:layout_marginTop="16dp" />
+                android:text="Обновить"
+                app:layout_constraintTop_toTopOf="@id/weather_info"
+                app:layout_constraintEnd_toEndOf="parent"
+                 />
 
             <Button
                 android:id="@+id/buy_button"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="buy_tour"
+                android:text="Купить"
                 app:layout_constraintTop_toBottomOf="@id/weather_info"
-                app:layout_constraintStart_toEndOf="@id/refresh_button"
+                app:layout_constraintStart_toStartOf="parent"
                 android:layout_marginTop="16dp"
                 android:layout_marginStart="16dp"/>
 

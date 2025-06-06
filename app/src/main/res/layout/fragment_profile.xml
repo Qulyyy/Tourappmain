@@ -8,7 +8,7 @@
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Edit Profile"
+        android:text="Изменение аккаунта"
         android:textSize="20sp"
         android:textStyle="bold"
         android:layout_marginBottom="16dp" />
@@ -17,7 +17,7 @@
         android:id="@+id/login_edit"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="Login"
+        android:hint="Имя"
         android:inputType="text"
         android:layout_marginBottom="8dp" />
 
@@ -25,7 +25,7 @@
         android:id="@+id/email_edit"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="Email"
+        android:hint="Почта"
         android:inputType="textEmailAddress"
         android:layout_marginBottom="8dp" />
 
@@ -33,7 +33,7 @@
         android:id="@+id/password_edit"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="New Password (leave empty to keep current)"
+        android:hint="Смена пароля(Оставить пустым если не нужно)"
         android:inputType="textPassword"
         android:layout_marginBottom="16dp" />
 
@@ -41,6 +41,6 @@
         android:id="@+id/save_button"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Save Changes" />
+        android:text="Сохранить" />
 
 </LinearLayout>

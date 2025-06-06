@@ -3,12 +3,14 @@ package com.example.verst
 import android.content.Intent
 import android.os.Bundle
 import android.util.Log
+import android.view.View
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
-import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.verst.databinding.ActivityTourBinding
 import com.example.verst.network.ApiClient
 import com.example.verst.network.UserTourRequest
+import com.example.verst.network.WeatherApiClient
+import com.example.verst.network.WeatherResponse
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -18,6 +20,8 @@ class TourActivity : AppCompatActivity() {
     private lateinit var binding: ActivityTourBinding
     private val sharedPrefs by lazy { getSharedPreferences("tour_app_prefs", MODE_PRIVATE) }
     private var tourId: Int = -1
+    private var currentLocation: String? = null
+    private val weatherApiKey = "b3649b59d6b0b30d01078dd4255d4cc2" // Замените на ваш ключ OpenWeatherMap
 
     companion object {
         private const val TAG = "TourActivity"
@@ -35,13 +39,17 @@ class TourActivity : AppCompatActivity() {
             return
         }
 
-
         // Загрузка деталей тура
         fetchTourDetails()
 
         // Настройка кнопки покупки
         binding.buyButton.setOnClickListener {
             purchaseTour()
+        }
+
+        // Настройка кнопки обновления погоды
+        binding.refreshButton.setOnClickListener {
+            currentLocation?.let { fetchWeather(normalizeCityName(it)) }
         }
     }
 
@@ -52,19 +60,13 @@ class TourActivity : AppCompatActivity() {
                     response.body()?.let { tour ->
                         Log.d(TAG, "Tour loaded: ${tour.title}")
                         binding.tourTitle.text = tour.title
-                        binding.tourLocation.text = tour.location
-                        binding.tourPrice.text = "${tour.price} $"
+                        binding.tourLocationIconText.text = tour.location
+                        binding.tourPrice.text = "${tour.price} Р"
                         binding.tourDescription.text = tour.description
                         binding.tourDate.text = tour.date
-                        // Преобразуем WebTours в Tourss для TourAdapter
-                        val tourss = listOf(
-                            Tourss(
-                                date = tour.date,
-                                title = tour.title,
-                                location = tour.location,
-                                imageResId = R.drawable.bg_img
-                            )
-                        )
+                        // Сохраняем локацию и загружаем погоду
+                        currentLocation = tour.location
+                        fetchWeather(normalizeCityName(tour.location))
                     } ?: run {
                         Log.e(TAG, "Tour response body is null")
                         Toast.makeText(this@TourActivity, "Failed to load tour", Toast.LENGTH_SHORT).show()
@@ -82,6 +84,64 @@ class TourActivity : AppCompatActivity() {
             override fun onFailure(call: Call<WebTours>, t: Throwable) {
                 Log.e(TAG, "Network error: ${t.message}", t)
                 Toast.makeText(this@TourActivity, "Network error: ${t.message}", Toast.LENGTH_SHORT).show()
+            }
+        })
+    }
+
+    private fun normalizeCityName(city: String): String {
+        return when (city.lowercase()) {
+            "москва" -> "Moscow"
+            "сочи" -> "Sochi"
+            "рязань" -> "Ryazan"
+            else -> city
+        }
+    }
+
+    private fun translateWeatherDescription(description: String): String {
+        return when (description.lowercase()) {
+            "clear sky" -> "Ясно"
+            "few clouds" -> "Малооблачно"
+            "scattered clouds" -> "Рассеянные облака"
+            "broken clouds" -> "Облачно"
+            "shower rain" -> "Ливень"
+            "rain" -> "Дождь"
+            "thunderstorm" -> "Гроза"
+            "snow" -> "Снег"
+            "mist" -> "Туман"
+            "overcast clouds" -> "Пасмурно"
+            else -> description.replaceFirstChar { it.uppercase() }
+        }
+    }
+
+    private fun fetchWeather(city: String) {
+        binding.weatherProgress.visibility = View.VISIBLE
+        binding.weatherInfo.text = "Погода: Загрузка..."
+
+        WeatherApiClient.weatherApiService.getWeather(city, weatherApiKey).enqueue(object : Callback<WeatherResponse> {
+            override fun onResponse(call: Call<WeatherResponse>, response: Response<WeatherResponse>) {
+                binding.weatherProgress.visibility = View.GONE
+                if (response.isSuccessful) {
+                    response.body()?.let { weather ->
+                        val temperature = weather.main.temp
+                        val description = weather.weather.firstOrNull()?.description?.let { translateWeatherDescription(it) } ?: "Неизвестно"
+                        binding.weatherInfo.text = "Погода: $temperature°C, $description"
+                        Log.d(TAG, "Weather loaded for $city: $temperature°C, $description")
+                    } ?: run {
+                        binding.weatherInfo.text = "Погода: Данные недоступны"
+                        Toast.makeText(this@TourActivity, "Данные о погоде недоступны", Toast.LENGTH_SHORT).show()
+                    }
+                } else {
+                    binding.weatherInfo.text = "Погода: Ошибка"
+                    Log.e(TAG, "Failed to load weather: ${response.code()} - ${response.message()}")
+                    Toast.makeText(this@TourActivity, "Ошибка загрузки погоды: ${response.code()}", Toast.LENGTH_SHORT).show()
+                }
+            }
+
+            override fun onFailure(call: Call<WeatherResponse>, t: Throwable) {
+                binding.weatherProgress.visibility = View.GONE
+                binding.weatherInfo.text = "Погода: Ошибка сети"
+                Log.e(TAG, "Weather network error: ${t.message}", t)
+                Toast.makeText(this@TourActivity, "Ошибка сети: ${t.message}", Toast.LENGTH_SHORT).show()
             }
         })
     }

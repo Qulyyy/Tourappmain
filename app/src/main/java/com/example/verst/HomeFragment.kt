@@ -43,10 +43,10 @@ class HomeFragment : Fragment() {
         fetchUserName()
 
         // Настройка заголовка "Beautiful world!"
-        val titleText = "Beautiful world!"
+        val titleText = "Чудесный мир!"
         val spannableString = SpannableString(titleText)
-        val beautifulStart = titleText.indexOf("world!")
-        val beautifulEnd = beautifulStart + "world!".length
+        val beautifulStart = titleText.indexOf("мир!")
+        val beautifulEnd = beautifulStart + "мир!".length
         spannableString.setSpan(
             ForegroundColorSpan(android.graphics.Color.parseColor("#FF7029")),
             beautifulStart,

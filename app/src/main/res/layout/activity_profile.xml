@@ -36,7 +36,7 @@
                 android:id="@+id/title_profile"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Profile"
+                android:text="Профиль"
                 android:textColor="@android:color/black"
                 android:textSize="20sp"
                 android:textStyle="bold"
@@ -49,7 +49,7 @@
                 android:id="@+id/logout"
                 android:layout_width="24dp"
                 android:layout_height="24dp"
-                android:src="@drawable/ic_edit"
+                android:src="@drawable/img_2"
                 android:layout_marginTop="4dp"
                 android:layout_marginEnd="20dp"
                 android:scaleType="fitXY"
@@ -81,7 +81,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="16dp"
-                android:text="Leonardo"
+                android:text="Гость"
                 android:textColor="@android:color/black"
                 android:textSize="24sp"
                 android:textStyle="bold" />
@@ -91,7 +91,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="4dp"
-                android:text="leonardo@gmail.com"
+                android:text="Гость"
                 android:textColor="@android:color/darker_gray"
                 android:textSize="16sp" />
         </LinearLayout>
@@ -127,7 +127,7 @@
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:layout_marginStart="16dp"
-                    android:text="Profile"
+                    android:text="Изменение данных"
                     android:textColor="@android:color/black"
                     android:textSize="16sp" />
 
@@ -162,7 +162,7 @@
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:layout_marginStart="16dp"
-                    android:text="Settings"
+                    android:text="Настройки"
                     android:textColor="@android:color/black"
                     android:textSize="16sp" />
 
@@ -196,7 +196,7 @@
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:layout_marginStart="16dp"
-                    android:text="Version"
+                    android:text="Версия"
                     android:textColor="@android:color/black"
                     android:textSize="16sp" />
 

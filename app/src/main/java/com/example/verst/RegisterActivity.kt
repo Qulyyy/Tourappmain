@@ -1,9 +1,9 @@
 package com.example.verst
 
 import android.content.Intent
+import android.net.Uri
 import android.os.Bundle
 import android.util.Patterns
-import android.view.View
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.example.verst.databinding.ActivityRegisterBinding
@@ -20,17 +20,14 @@ class RegisterActivity : AppCompatActivity() {
     companion object {
         private const val SHARED_PREFS_NAME = "tour_app_prefs"
         private const val TOKEN_KEY = "auth_token"
+        private const val FACEBOOK_URL = "https://www.facebook.com"
+        private const val TWITTER_URL = "https://www.twitter.com"
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityRegisterBinding.inflate(layoutInflater)
         setContentView(binding.root)
-
-        // Стрелка назад
-        binding.backArrow.setOnClickListener {
-            finish()
-        }
 
         // Кнопка регистрации
         binding.registerButton.setOnClickListener {
@@ -42,23 +39,42 @@ class RegisterActivity : AppCompatActivity() {
                 registerUser(login, email, password)
             }
         }
+        binding.signInLink.setOnClickListener {
+            startActivity(Intent(this, LoginActivity::class.java))
+        }
+        binding.facebookIcon.setOnClickListener {
+            openUrlInBrowser(FACEBOOK_URL)
+        }
+
+        // Обработчик клика для иконки Twitter
+        binding.twitterIcon.setOnClickListener {
+            openUrlInBrowser(TWITTER_URL)
+        }
+    }
+    private fun openUrlInBrowser(url: String) {
+        val intent = Intent(Intent.ACTION_VIEW, Uri.parse(url))
+        try {
+            startActivity(intent)
+        } catch (e: Exception) {
+            Toast.makeText(this, "Не удалось открыть браузер", Toast.LENGTH_SHORT).show()
+        }
     }
 
     private fun validateRegisterFields(login: String, email: String, password: String): Boolean {
         if (login.isEmpty()) {
-            binding.loginInput.error = "Login cannot be empty"
+            binding.loginInput.error = "Поле логина не может быть пустым"
             return false
         }
         if (email.isEmpty()) {
-            binding.emailInput.error = "Email cannot be empty"
+            binding.emailInput.error = "Поле email не может быть пустым"
             return false
         }
         if (!Patterns.EMAIL_ADDRESS.matcher(email).matches()) {
-            binding.emailInput.error = "Invalid email format"
+            binding.emailInput.error = "Неверный формат email"
             return false
         }
         if (password.isEmpty()) {
-            binding.passwordInput.error = "Password cannot be empty"
+            binding.passwordInput.error = "Поле пароля не может быть пустым"
             return false
         }
         return true
@@ -77,17 +93,17 @@ class RegisterActivity : AppCompatActivity() {
                     if (token != null) {
                         val sharedPrefs = getSharedPreferences(SHARED_PREFS_NAME, MODE_PRIVATE)
                         sharedPrefs.edit().putString(TOKEN_KEY, token).apply()
-                        Toast.makeText(this@RegisterActivity, "Registration successful!", Toast.LENGTH_SHORT).show()
+                        Toast.makeText(this@RegisterActivity, "Регистрация успешна!", Toast.LENGTH_SHORT).show()
                         startActivity(Intent(this@RegisterActivity, MainActivity::class.java))
                         finish()
                     } else {
-                        Toast.makeText(this@RegisterActivity, "Invalid response from server", Toast.LENGTH_LONG).show()
+                        Toast.makeText(this@RegisterActivity, "Неверный ответ от сервера", Toast.LENGTH_LONG).show()
                     }
                 } else {
                     val errorMessage = when (response.code()) {
-                        400 -> "Invalid email format"
-                        409 -> "User already exists"
-                        else -> "Registration failed: ${response.message()}"
+                        400 -> "Неверный формат email"
+                        409 -> "Пользователь уже существует"
+                        else -> "Ошибка регистрации: ${response.message()}"
                     }
                     Toast.makeText(this@RegisterActivity, errorMessage, Toast.LENGTH_LONG).show()
                 }
@@ -95,7 +111,7 @@ class RegisterActivity : AppCompatActivity() {
 
             override fun onFailure(call: Call<RegisterReceiveRemote>, t: Throwable) {
                 binding.registerButton.isEnabled = true
-                Toast.makeText(this@RegisterActivity, "Network error: ${t.message}", Toast.LENGTH_LONG).show()
+                Toast.makeText(this@RegisterActivity, "Ошибка сети: ${t.message}", Toast.LENGTH_LONG).show()
             }
         })
     }

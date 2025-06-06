@@ -42,4 +42,6 @@ object ApiClient {
         val sharedPrefs = App.context.getSharedPreferences("tour_app_prefs", android.content.Context.MODE_PRIVATE)
         return sharedPrefs.getString("auth_token", null)
     }
+
+
 }

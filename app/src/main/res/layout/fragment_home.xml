@@ -22,7 +22,7 @@
             android:src="@drawable/avatar_placeholder"
             android:scaleType="centerInside"
             android:background="#ffffff"
-            android:contentDescription="User avatar"
+            android:contentDescription="Аватар пользователя"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
@@ -31,7 +31,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="8dp"
-            android:text="Leonardo"
+            android:text="Леонардо"
             android:textColor="@android:color/black"
             android:textSize="16sp"
             app:layout_constraintStart_toEndOf="@id/avatar"
@@ -61,14 +61,14 @@
             app:layout_constraintEnd_toEndOf="@id/notification_button"
             app:layout_constraintTop_toTopOf="@id/notification_button" />
 
-        <!-- Заголовок "Explore the Beautiful world!" -->
+        <!-- Заголовок "Исследуйте прекрасный мир!" -->
         <TextView
             android:id="@+id/title_explore"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="24dp"
             android:layout_marginTop="32dp"
-            android:text="Explore the"
+            android:text="Исследуйте"
             android:textColor="@android:color/black"
             android:textSize="40sp"
             app:layout_constraintStart_toStartOf="parent"
@@ -80,7 +80,7 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="24dp"
             android:layout_marginTop="8dp"
-            android:text="Beautiful world!"
+            android:text="прекрасный мир!"
             android:textColor="@android:color/black"
             android:textSize="40sp"
             android:textStyle="bold"
@@ -91,31 +91,31 @@
             android:id="@+id/or_line"
             android:layout_width="100dp"
             android:layout_height="10dp"
-            android:layout_marginStart="174dp"
+            android:layout_marginStart="193dp"
             android:background="@drawable/or_line"
             app:layout_constraintStart_toStartOf="@id/title_explore1"
             app:layout_constraintTop_toBottomOf="@id/title_explore1" />
 
-        <!-- Подзаголовок "Best Destination" -->
+        <!-- Подзаголовок "Лучшие направления" -->
         <TextView
             android:id="@+id/subtitle_best_destination"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="32dp"
             android:layout_marginTop="32dp"
-            android:text="Best Destination"
+            android:text="Лучшие туры"
             android:textColor="@android:color/black"
             android:textSize="24sp"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/title_explore1" />
 
-        <!-- Кнопка "View all" -->
+        <!-- Кнопка "Посмотреть все" -->
         <TextView
             android:id="@+id/view_all_button"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginEnd="24dp"
-            android:text="View all"
+            android:text="Посмотреть все"
             android:textColor="#3F51B5"
             android:textSize="14sp"
             app:layout_constraintEnd_toEndOf="parent"
@@ -130,9 +130,10 @@
             android:layout_marginTop="32dp"
             android:paddingHorizontal="16dp"
             android:nestedScrollingEnabled="false"
-        app:layout_constraintTop_toBottomOf="@id/subtitle_best_destination"
-        app:layout_constraintBottom_toBottomOf="parent"
-        tools:listitem="@layout/item_destination" />
+            app:layout_constraintTop_toBottomOf="@id/subtitle_best_destination"
+            app:layout_constraintBottom_toBottomOf="parent"
+            tools:listitem="@layout/item_destination" />
+
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </androidx.core.widget.NestedScrollView>

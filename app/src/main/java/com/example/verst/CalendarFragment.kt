@@ -5,12 +5,19 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
+import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.verst.databinding.FragmentCalendarBinding
+import com.example.verst.network.ApiClient.apiService
+import com.example.verst.network.ApiService
+import retrofit2.Call
+import retrofit2.Callback
+import retrofit2.Response
 import java.time.DayOfWeek
 import java.time.LocalDate
+import java.time.format.DateTimeFormatter
 import java.time.format.TextStyle
 import java.util.*
 
@@ -20,8 +27,11 @@ class CalendarFragment : Fragment() {
     private val binding get() = _binding!!
     private lateinit var recyclerView: RecyclerView
     private lateinit var adapter: CalendarAdapter
+    private lateinit var tourAdapter: TourAdapter
     private lateinit var currentWeekStart: LocalDate
     private lateinit var tvDateTitle: TextView
+    private var allTours: List<WebTours> = emptyList()
+    private var selectedDate: LocalDate? = null
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -40,6 +50,7 @@ class CalendarFragment : Fragment() {
         recyclerView.layoutManager = LinearLayoutManager(requireContext(), RecyclerView.HORIZONTAL, false)
 
         currentWeekStart = getStartOfWeek(LocalDate.now())
+        selectedDate = LocalDate.now()
         updateCalendar()
 
         binding.btnPrev.setOnClickListener {
@@ -52,36 +63,61 @@ class CalendarFragment : Fragment() {
             updateCalendar()
         }
 
-        // Создаем список туров
-        val tours = listOf(
-            Tourss(
-                date = "26 май 2025",
-                title = "Тур3",
-                location = "Сочи",
-                imageResId = R.drawable.niladri_reservoir
-            ),
-            Tourss(
-                date = "26 май 2025",
-                title = "Тур2",
-                location = "Рязань",
-                imageResId = R.drawable.niladri_reservoir
-            ),
-            Tourss(
-                date = "26 май 2025",
-                title = "Тур1",
-                location = "Москва",
-                imageResId = R.drawable.niladri_reservoir
-            )
-        )
-
         // Настройка списка туров
         binding.scheduleRecyclerView.layoutManager = LinearLayoutManager(requireContext())
-        binding.scheduleRecyclerView.adapter = TourAdapter(tours)
+        tourAdapter = TourAdapter(emptyList())
+        binding.scheduleRecyclerView.adapter = tourAdapter
+
+        // Загрузка туров с сервера
+        loadTours()
 
         // Кнопки верхней панели
         binding.backButton.setOnClickListener { /* Назад */ }
         binding.notificationButton.setOnClickListener { /* Уведомления */ }
         binding.viewAllButton.setOnClickListener { /* View all */ }
+    }
+
+    private fun loadTours() {
+
+        apiService.getAllTours().enqueue(object : Callback<List<WebTours>> {
+            override fun onResponse(call: Call<List<WebTours>>, response: Response<List<WebTours>>) {
+                if (response.isSuccessful) {
+                    allTours = response.body() ?: emptyList()
+                    updateToursForSelectedDate()
+                } else {
+                    Toast.makeText(
+                        requireContext(),
+                        "Failed to load tours: ${response.code()}",
+                        Toast.LENGTH_SHORT
+                    ).show()
+                }
+            }
+
+            override fun onFailure(call: Call<List<WebTours>>, t: Throwable) {
+                Toast.makeText(
+                    requireContext(),
+                    "Network error: ${t.message}",
+                    Toast.LENGTH_SHORT
+                ).show()
+            }
+        })
+    }
+
+    private fun updateToursForSelectedDate() {
+        selectedDate?.let { date ->
+            val formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd")
+            val selectedDateString = date.format(formatter)
+            val filteredTours = allTours.filter { it.date == selectedDateString }
+            tourAdapter.updateTours(filteredTours)
+            // Показать/скрыть плейсхолдер
+            if (filteredTours.isEmpty()) {
+                binding.scheduleRecyclerView.visibility = View.GONE
+                binding.noToursPlaceholder.visibility = View.VISIBLE
+            } else {
+                binding.scheduleRecyclerView.visibility = View.VISIBLE
+                binding.noToursPlaceholder.visibility = View.GONE
+            }
+        }
     }
 
     private fun updateCalendar() {
@@ -93,20 +129,22 @@ class CalendarFragment : Fragment() {
                 date = date,
                 letter = date.dayOfWeek.getDisplayName(TextStyle.SHORT, Locale.getDefault()).take(2).replaceFirstChar { it.uppercase() },
                 number = date.dayOfMonth.toString(),
-                isSelected = date == today
+                isSelected = date == selectedDate
             )
         }.toMutableList()
 
-        val selectedIndex = weekDays.indexOfFirst { it.date == today }.takeIf { it >= 0 } ?: 0
-        val selectedDate = weekDays[selectedIndex].date
+        val selectedIndex = weekDays.indexOfFirst { it.date == selectedDate }.takeIf { it >= 0 } ?: 0
+        selectedDate = weekDays[selectedIndex].date
 
-        tvDateTitle.text = "${selectedDate.dayOfMonth} ${
-            selectedDate.month.name.lowercase().replaceFirstChar { it.uppercase() }
+        tvDateTitle.text = "${selectedDate?.dayOfMonth} ${
+            selectedDate?.month?.name?.lowercase()?.replaceFirstChar { it.uppercase() }
         }"
 
-        adapter = CalendarAdapter(weekDays, selectedPosition = selectedIndex) { position, dayItem ->
+        adapter = CalendarAdapter(weekDays, selectedIndex) { position, dayItem ->
+            selectedDate = dayItem.date
             moveHighlightToPosition(position)
             tvDateTitle.text = "${dayItem.date.dayOfMonth} ${dayItem.date.month.name.lowercase().replaceFirstChar { it.uppercase() }}"
+            updateToursForSelectedDate()
         }
         recyclerView.adapter = adapter
 
